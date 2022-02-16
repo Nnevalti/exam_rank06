@@ -11,7 +11,7 @@ int clients = 0, fd_max = 0;
 int idx[65536];
 char *msg[65536];
 char rbuf[1025], wbuf[42];
-fd_set rfds, wfds, fds;
+fd_set fds, rfds, wfds;
 
 int extract_message(char **buf, char **msg)
 {
@@ -101,7 +101,7 @@ void add_client(int fd)
 
 void remove_client(int fd)
 {
-	sprintf(wbuf, "server: cient %d just left\n", idx[fd]);
+	sprintf(wbuf, "server: client %d just left\n", idx[fd]);
 	notify(fd, wbuf);
 	free(msg[fd]);
 	msg[fd] = NULL;
